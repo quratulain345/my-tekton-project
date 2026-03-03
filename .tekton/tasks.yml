@@ -1,0 +1,19 @@
+tasks:
+  # cleanup task
+  - name: cleanup
+    steps:
+      - name: remove-temp
+        image: alpine
+        script: |
+          echo "Cleaning up temporary files..."
+          rm -rf /tmp/*
+
+  # test task
+  - name: test
+    steps:
+      - name: run-tests
+        image: python:3.11
+        script: |
+          pip install nose
+          echo "Running tests..."
+          nosetests
